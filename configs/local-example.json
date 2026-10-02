@@ -1,0 +1,34 @@
+{
+  "run_id": "local-example",
+  "benchmark_kind": "real",
+  "synthetic_demo": false,
+  "cases": "../data/synthetic-tasks.json",
+  "repetitions": 3,
+  "concurrency": [1, 2],
+  "warmup_requests": 1,
+  "timeout_seconds": 90,
+  "host": {
+    "label": "replace-with-a-non-identifying-host-class",
+    "hardware": "replace-with-public-safe-hardware-description",
+    "memory_gib": null,
+    "os": "replace-with-os-and-version"
+  },
+  "notes": "Record the exact server commit and model artifact details below before comparing runs.",
+  "profiles": [
+    {
+      "name": "baseline",
+      "base_url": "http://127.0.0.1:8000/v1",
+      "model": "MODEL_ID_AS_REPORTED_BY_SERVER",
+      "provider": "OpenAI-compatible local server",
+      "model_artifact": "hf:example-org/example-model",
+      "quantization": "record quantization or null",
+      "server_name": "record server/runtime and version",
+      "server_commit": "replace-with-server-git-commit",
+      "context_tokens": null,
+      "request": {
+        "temperature": 0,
+        "max_tokens": 96
+      }
+    }
+  ]
+}

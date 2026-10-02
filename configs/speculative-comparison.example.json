@@ -1,0 +1,45 @@
+{
+  "run_id": "speculative-comparison-example",
+  "benchmark_kind": "real",
+  "synthetic_demo": false,
+  "cases": "../data/synthetic-tasks.json",
+  "repetitions": 5,
+  "concurrency": [1],
+  "warmup_requests": 1,
+  "timeout_seconds": 120,
+  "host": {
+    "label": "replace-with-a-non-identifying-host-class",
+    "hardware": "replace-with-public-safe-hardware-description",
+    "memory_gib": null,
+    "os": "replace-with-os-and-version"
+  },
+  "notes": "Run both profiles against the same loaded target and controlled workload. Use separate server instances only when their hardware and contention can be controlled and documented.",
+  "profiles": [
+    {
+      "name": "baseline-no-speculation",
+      "base_url": "http://127.0.0.1:8000/v1",
+      "model": "MODEL_ID_AS_REPORTED_BY_SERVER",
+      "provider": "local OpenAI-compatible server",
+      "model_artifact": "hf:example-org/example-model",
+      "quantization": "record quantization",
+      "server_name": "record server/runtime",
+      "server_commit": "record exact server commit",
+      "speculative_mode": "disabled",
+      "speculative_engagement": {"signal": "not applicable", "value": "baseline", "validated": true},
+      "request": {"temperature": 0, "max_tokens": 96}
+    },
+    {
+      "name": "speculative-enabled",
+      "base_url": "http://127.0.0.1:8001/v1",
+      "model": "MODEL_ID_AS_REPORTED_BY_SERVER",
+      "provider": "same local server and target model",
+      "model_artifact": "hf:example-org/example-model",
+      "quantization": "same quantization for both profiles",
+      "server_name": "same server/runtime",
+      "server_commit": "same server commit",
+      "speculative_mode": "describe backend flag/configuration used at server startup",
+      "speculative_engagement": {"signal": "record backend-specific positive counter or initialization log", "value": "replace-with-observed-counter-or-log-evidence", "validated": false},
+      "request": {"temperature": 0, "max_tokens": 96}
+    }
+  ]
+}
